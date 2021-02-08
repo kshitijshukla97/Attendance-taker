@@ -1,0 +1,53 @@
+<%- include("header",{title:"DashBoard"}) %>
+<%- include("navbar") %>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-8">
+            <h3 class="h3">Entry In the List Will Stop After 2 Min Of Creation Of Code.</h3>
+            <div class="card" >
+                <ul class="list-group list-group-flush text-center">
+                    <li class="list-group-item ">Class Name:- <span class="text-primary"><b><%= alldetail.classname %></span></b></li>
+                    <li class="list-group-item">Class Code:-<span class="text-primary"><b><%= alldetail.classcode %></span></b></li>
+                    <li class="list-group-item">Class Created On  :-<span class="text-primary"><b><%= alldetail.createdon %></b></span></li>
+                    <li class="list-group-item">Class Created On :-<span class="text-primary"><b>
+                                <%= alldetail.email %>
+                            </b></span></li>
+                    <li class="list-group-item">No Of Student Present (Upto Now):-<span class="text-primary"><b><%= alldetail.attendes.length %></b></span></li>
+                </ul>
+            </div>
+            <hr>
+            <div class="table-responsive-sm">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Registartion No:</th>
+                        <th scope="col">email</th>
+                        <th scope="col">Time</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% alldetail.attendes.forEach((x)=>{ %>
+                        <tr>
+                            <td><%= x.name %></td>
+                            <td><%= x.registration %></td>
+                            <td><%= x.email %></td>
+                            <td><%= x.datetime %></td>
+                        </tr>
+                    <%
+                    }) %>
+                    <tr>
+                        <td colspan="4" class="text-center bg-primary text-white">Reload To Get Updated List ✅</td>
+                    </tr>
+                    
+                    
+                </tbody>
+            </table>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <img class="img-fluid" src="../img/lime-491.png" alt="">
+        </div>
+    </div>
+</div>
+<%- include("footer") %>

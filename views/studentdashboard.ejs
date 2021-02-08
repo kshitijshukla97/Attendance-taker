@@ -1,0 +1,51 @@
+<%- include("header",{title:"DashBoard"}) %> <%- include("navbar") %>
+<script src="../js/ang.js"></script>
+<div class="container" ng-app="myapp" ng-controller="mycontro">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="card border border-dark">
+        <div class="card-header bg-primary text-white">
+          Give Your Attendance.
+        </div>
+        <div class="card-body">
+          <img
+            src="<%= pic %>"
+            alt=""
+            class="img-fluid rounded-circle border border-dark mb-2"
+          />
+          Name: <%= name %>
+          <h5 class="card-title">
+            Enter Your Unique Code And Your Registartion No.
+          </h5>
+          <form ng-submit="giveattendance();">
+            <p class="card-text">
+              <input
+                type="text"
+                name="uncode"
+                class="form-control mb-1 border border-dark"
+                placeholder="Enter Your Unique Code(Given By Your Teacher)"
+                autocomplete="off"
+                ng-model="uncode"
+                required
+              />
+              <input
+                type="text"
+                name="regno"
+                class="form-control mb-1 border border-dark"
+                placeholder="Your Registration No."
+                ng-model="regno"
+                required
+              />
+            </p>
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <img src="../img/lime-491.png" alt="" class="img-fluid" />
+    </div>
+  </div>
+</div>
+
+<%- include("footer") %>

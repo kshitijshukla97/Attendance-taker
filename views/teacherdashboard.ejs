@@ -1,0 +1,103 @@
+<%- include("header",{title:"DashBoard"}) %>
+<%- include("navbar") %>
+<script src="../js/ang.js"></script>
+
+<div class="container-fluid" ng-app="myapp" ng-controller="mycontro">
+    <!--
+        this is Modal
+    -->
+    <div class="modal fade bg-dark" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content bg-dark text-white border border-white">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Class Info ℹ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                 <h4>Class Name:-</h4> <span class="lead">{{classname}}</span>  
+                <h4>Class Code:-</h4> <input type="text" value="{{classcode}}" placeholder="Class Code will Be Here" class="form-control text-center border border-dark" readonly> 
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Generate New Code</button>
+                    <button type="button" class="btn btn-primary" ng-click="copyfunc();">Copy Code To Clipboard ©</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--
+        this is Modal
+    -->
+    <div class="row">
+        <div class="col-sm-8">
+            <h1 class="h1 mx-4">DashBoard.</h1>
+            <div class="card mx-4 border border-dark">
+                <div class="card-header ">
+                    Take A New Attendance .
+                </div>
+                <div class="card-body ">
+                    <p>
+                        <img src="<%= pic %>" alt="Profile Picture" class="img-fluid rounded-circle border border-dark mb-2">
+                        Name: <%= name %>
+                    </p>
+                    <form ng-submit="createclass();">
+                    <label class="card-title" for="classname">Class Name :</label>
+                    <p class="card-text">
+                        <input type="text" name="classname" id="classname" class="form-control" placeholder="Enter Your Class Name." required autocomplete="off" ng-model="classname" autofocus title="Give Your Class Name" style="cursor: pointer;">
+                        <br>
+                        <input type="text" class="" readonly disabled placeholder="Class Code." ng-model="classcode" id="code"><small class="text-muted mx-1">Share This With Students.</small>
+                        <hr>
+                        <button ng-if="classcode" class="btn btn-outline-success mx-2 border border-dark" title="Copy Code" data-toggle="modal" data-target="#exampleModal" type="button"><i class="far fa-copy"></i> Copy Code</button>
+                        <a ng-if="classcode" class="btn btn-outline-dark mx-2 border border-dark" href="whatsapp://send?text=Enter This Code :* {{classcode}} *To Mark Your Attendance"><i class="fas fa-share-alt"></i> Share On WhatsApp <i class="fab fa-whatsapp"></i></a>
+                    </p>
+                    <button class="btn btn-primary" type="submit">Make New Class</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="card mx-4 border border-dark" ng-init="getlistofclasses();">
+                <div class="card-header text-center text-white bg-primary">
+                   All Classes <button class="btn btn-outline-light" type="button" ng-click="getlistofclasses();"><i class="fas fa-sync fa-spin"></i></button>
+                </div>
+                <div class="card-body table-responsive-sm">
+                    <table class="table table-sm table-hover">
+                        <thead class="thead-dark">
+                            <tr>
+                                
+                                <th scope="col">Class Name</th>
+                                <th scope="col">Created On</th>
+                                <th scope="col">Code</th>
+                                <th scope="col"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="x in classinfolist">
+                                <td>
+                                    {{x.classname}} 
+                                </td>
+                                <td>
+                                     {{x.createdon | date:"medium"}}
+                                </td>
+                                <td>
+                                    {{x.classcode}} 
+                                </td>
+                                <td><a href="/viewattendancelist/{{x.classcode}}">See Attendance</a></td>
+                            </tr>
+                            
+                            
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+        <img src="../img/clip-distance-education.png" alt="" class="img-fluid">
+        </div>
+    </div>
+</div>
+
+<%- include("footer") %>
+

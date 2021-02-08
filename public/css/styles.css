@@ -1,0 +1,11 @@
+.dark-mode {
+  filter: invert(95%);
+}
+
+body {
+  font-family: "Poppins";
+}
+.card:hover {
+  box-shadow: 0 14px 28px rgba(22, 13, 110, 0.452),
+    0 10px 10px rgba(0, 0, 0, 0.22);
+}
